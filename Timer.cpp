@@ -8,6 +8,11 @@ Timer::Timer(){
 	m_StartTimePoint = std::chrono::high_resolution_clock::now();
 }
 
+// Timer::Timer(double* result){
+// 	m_StartTimePoint = std::chrono::high_resolution_clock::now();
+// 	_duration = result;
+// }
+
 Timer::~Timer(){
 	Stop();
 }
@@ -34,14 +39,16 @@ void Timer::Stop(){
 
 double Timer::duration_now(){
 	auto endTimePoint = std::chrono::high_resolution_clock::now();
-	auto start = std::chrono::time_point_cast<std::chrono::microseconds>(m_StartTimePoint).time_since_epoch().count();
-	auto end = std::chrono::time_point_cast<std::chrono::microseconds>(endTimePoint).time_since_epoch().count();
+	auto start = std::chrono::time_point_cast<std::chrono::nanoseconds>(m_StartTimePoint).time_since_epoch().count();
+	auto end = std::chrono::time_point_cast<std::chrono::nanoseconds>(endTimePoint).time_since_epoch().count();
 	auto duration = end - start;
-	return (double)duration;
+	return (double)duration/1000.0;
 }
 
 void Timer::BENCHMARK_RATE(uint64_t score){
 	auto duration = duration_now();
+	// if(_duration != nullptr)
+	// 	*_duration = duration;
 	//double ms = duration * 0.001;
 	//double s = ms * 0.001;
 	double rate = (double)score/duration;

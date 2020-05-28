@@ -299,7 +299,7 @@ void Graph::parseJSONdata(const std::string &filename)
 	}
 
 	// std::vector<unsigned char> targets(n_vertex);
-	std::vector<std::pair<std::vector<int>, std::vector<int>>> adjacency_list_pairs(n_edges);
+	std::vector<std::pair<std::vector<int>, std::vector<int>>> adjacency_list_pairs(n_vertex);
 	node_name_list.resize(n_vertex);
 	
 	for (nlohmann::json::iterator it = j["node_list"].begin(); it != j["node_list"].end(); ++it)
@@ -308,14 +308,7 @@ void Graph::parseJSONdata(const std::string &filename)
 		node_name_list[id] = it.key();
 
 		isTarget[id] = it.value()["isTarget"].get<bool>();
-		// if (it.value()["isTarget"].get<bool>() == true)
-		// {
-		// 	isTarget[id] = true;
-		// }
-		// else
-		// {
-		// 	isTarget[id] = false;
-		// }
+
 	}
 
 	// // store data in Graph's isTarget array:
@@ -336,9 +329,6 @@ void Graph::parseJSONdata(const std::string &filename)
 		adjacency_list_pairs[id] = std::make_pair(inc_v, dec_v);
 	}
 
-	// fill edge's data:
-	//  inc:1   dec:0
-
 	int edge_index = 0;
 	int vertex_index = 0;
 
@@ -357,7 +347,7 @@ void Graph::parseJSONdata(const std::string &filename)
 
 		// store increase edges
 		for (const auto &i : inc_vector)
-		{
+		{ 
 			adjacency_list[edge_index] = i;
 			inc_dec_vector[edge_index] = 1;
 			edge_index++;

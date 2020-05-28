@@ -82,7 +82,7 @@ int main(int argc, char **argv)
 
     int source = 2123;
     int target = 122;
-    int path_length = 9;
+    int path_length = 5;
     if(argc > 4)
     {
         source = std::atoi(argv[2]);
@@ -92,7 +92,9 @@ int main(int argc, char **argv)
 
     bool filter_cycles = true;
 
+
     {
+        printf("Get distances in cuda(BFS): ");
         Timer t;
         g.get_all_distances(path_length);
     }
