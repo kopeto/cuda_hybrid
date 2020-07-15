@@ -92,19 +92,7 @@ void build_path(
 	std::reverse(path, path + hops + 1);
 }
 
-void print_path(const uint32_t *path, const size_t hops, uint32_t cost)
-{
-	if (cost != 0)
-		printf("COST: %u\n", cost);
-	printf("HOPS: %lu\n", hops);
-	printf("PATH: ");
-	for (size_t i = 0; i <= hops; ++i)
-	{
-		printf("%u %s", path[i], hops == i ? "\n" : " - ");
-	}
-}
-
-void Graph::listIncDecOfPath(const uint32_t *path, const size_t hops)
+void Graph::listIncDecOfPath(const uint32_t *path, const size_t hops) const
 {
 	printf("Activators: ");
 	for (int i = 0; i < hops; ++i)
@@ -135,8 +123,9 @@ Graph::~Graph()
 
 	if(distances)
 	{
-		for (int i = 0; i < n_vertex; ++i)
-        	free(*(distances + i));
+		// for (int i = 0; i < n_vertex; ++i)
+		// 	if(*(distances + i))
+        // 		free(*(distances + i));
 		free(distances);
 	}
 }
@@ -389,13 +378,13 @@ void Graph::parseJSONdata(const std::string &filename)
 	free(info_about_edges);
 }
 
-void Graph::listAllNodeNames()
+void Graph::listAllNodeNames() const
 {
 	for (const auto &name : node_name_list)
 		std::cout << name << std::endl;
 }
 
-void Graph::print_adjacency_offsets()
+void Graph::print_adjacency_offsets() const
 {
 	for (int i = 0; i <= n_vertex; ++i)
 	{
@@ -403,7 +392,7 @@ void Graph::print_adjacency_offsets()
 	}
 }
 
-void Graph::print_adjacency_list()
+void Graph::print_adjacency_list() const
 {
 	for (int i = 0; i < n_edges; ++i)
 	{

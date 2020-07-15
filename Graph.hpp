@@ -28,8 +28,6 @@ void build_path(
 	uint32_t *adjacency_list,
 	uint32_t *adjacency_offsets);
 
-void print_path(const uint32_t* path, const size_t hops, uint32_t cost=0);
-
 struct Graph {
 
 // ---------------------------------------------------
@@ -60,12 +58,12 @@ struct Graph {
 	uint32_t 	**distances = NULL;
 
 //  
-	void print_adjacency_list();
-	void print_adjacency_offsets();
+	void print_adjacency_list() const;
+	void print_adjacency_offsets() const;
 
 //	Build routes;
-	std::vector<std::vector<uint32_t>> build_routes(uint32_t* distances, uint32_t source, uint32_t target, uint32_t k, bool filter_cycles);
-	int  get_edge_polarity(uint32_t from, uint32_t to);
+	std::vector<std::vector<uint32_t>> build_routes(uint32_t* distances, uint32_t source, uint32_t target, uint32_t k, bool filter_cycles) const;
+	int  get_edge_polarity(uint32_t from, uint32_t to) const;
 
 
 //  CONSTRUCTORS
@@ -79,10 +77,10 @@ struct Graph {
 	void parseBinarydata(const std::string& filename);
 
 // 	List node names:
-	void listAllNodeNames();
+	void listAllNodeNames() const;
 
 // 	Print path Increase / Decrease edges:
-	void listIncDecOfPath(const uint32_t *path, const size_t hops);
+	void listIncDecOfPath(const uint32_t *path, const size_t hops) const;
 
 
 // --------------------------------------------------------------------------------
@@ -106,8 +104,9 @@ struct Graph {
 	//
 
 	void	  get_all_distances(const uint32_t MAX_ROUNDS );
-	void	  dfs_paths_subgraph(uint32_t* distances, std::vector<std::vector<uint32_t>>& all_routes, int depth, std::vector<uint32_t>& path, uint32_t target, bool filter_cycles);
-	void	  cpu_dfs(int depth, std::vector<std::vector<uint32_t>>& all_routes, std::vector<uint32_t> &path, uint32_t target, bool filter_cycles);
+	void      get_all_distances_from_single_source(const uint32_t source, const uint32_t MAX_ROUNDS);
+	void	  dfs_paths_subgraph(uint32_t* distances, std::vector<std::vector<uint32_t>>& all_routes, int depth, std::vector<uint32_t>& path, uint32_t target, bool filter_cycles) const;
+	void	  cpu_dfs(int depth, std::vector<std::vector<uint32_t>>& all_routes, std::vector<uint32_t> &path, uint32_t target, bool filter_cycles) const;
 };
 
 #endif 

@@ -23,7 +23,7 @@ static bool contains(std::vector<uint32_t> v, uint32_t target)
     return false;
 }
 
-int Graph::get_edge_polarity(uint32_t from, uint32_t to)
+int Graph::get_edge_polarity(uint32_t from, uint32_t to) const
 {
     uint32_t offset = adjacency_offsets[from];
     while (adjacency_list[offset] != to)
@@ -53,7 +53,7 @@ int Graph::get_edge_polarity(uint32_t from, uint32_t to)
 void Graph::dfs_paths_subgraph(uint32_t *distances,
                                std::vector<std::vector<uint32_t>> &all_routes,
                                int depth, std::vector<uint32_t> &path, uint32_t target,
-                               bool filter_cycles)
+                               bool filter_cycles) const
 {
     // trivial case
     if (depth == 1)
@@ -85,7 +85,7 @@ void Graph::dfs_paths_subgraph(uint32_t *distances,
     }
 }
 
-std::vector<std::vector<uint32_t>> Graph::build_routes(uint32_t *distances, uint32_t source, uint32_t target, uint32_t depth, bool filter_cycles)
+std::vector<std::vector<uint32_t>> Graph::build_routes(uint32_t *distances, uint32_t source, uint32_t target, uint32_t depth, bool filter_cycles) const
 {
     std::vector<std::vector<uint32_t>> all_routes;
     path_count = 0;
@@ -106,7 +106,7 @@ std::vector<std::vector<uint32_t>> Graph::build_routes(uint32_t *distances, uint
     return all_routes;
 }
 
-void Graph::cpu_dfs(int depth, std::vector<std::vector<uint32_t>> &all_routes, std::vector<uint32_t> &path, uint32_t target, bool filter_cycles)
+void Graph::cpu_dfs(int depth, std::vector<std::vector<uint32_t>> &all_routes, std::vector<uint32_t> &path, uint32_t target, bool filter_cycles) const
 {
     const uint32_t current = path.back();
 
@@ -137,12 +137,6 @@ void Graph::cpu_dfs(int depth, std::vector<std::vector<uint32_t>> &all_routes, s
             cpu_dfs(depth - 1, all_routes, path, target, filter_cycles);
             path.pop_back();
         }
-        // else
-        // {
-        //     if(adjacency_list[offset] == 7 || adjacency_list[offset] == 35 || adjacency_list[offset] == 0)
-        //         printf("%d discarded in depth %d\n",adjacency_list[offset], depth);
-        // }
-
         ++offset;
     }
 }
