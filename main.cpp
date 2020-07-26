@@ -109,7 +109,7 @@ int main(int argc, char **argv)
 
     int source = 2123;
     int target = 122;
-    int path_length = 5;
+    int path_length = 8;
     bool filter_cycles = true;
 
     if (argc > 4)

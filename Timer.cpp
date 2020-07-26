@@ -38,9 +38,11 @@ void Timer::Stop()
 	// double ms = duration * 0.001;
 	// double sec = ms * 0.001;
 	if (scale == "us")
-		printf(ANSI_COLOR_GREEN "(%d%s)\n" ANSI_COLOR_RESET, (uint32_t)val, scale.c_str());
+		// printf(ANSI_COLOR_GREEN "(%d%s)\n" ANSI_COLOR_RESET, (uint32_t)val, scale.c_str());
+		printf("(%d%s)\n" , (uint32_t)val, scale.c_str());
 	else
-		printf(ANSI_COLOR_GREEN "(%.2lf%s)\n" ANSI_COLOR_RESET, val, scale.c_str());
+		// printf(ANSI_COLOR_GREEN "(%.2lf%s)\n" ANSI_COLOR_RESET, val, scale.c_str());
+		printf("(%.2lf%s)\n" , val, scale.c_str());
 }
 
 double Timer::duration_now()

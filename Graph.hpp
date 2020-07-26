@@ -8,26 +8,6 @@
 
 const int32_t WARP_SIZE = 32;
 
-void build_weighted_path(
-	uint32_t *path, 
-	const uint32_t source,
-	const uint32_t target,
-	uint32_t& path_cost,
-	size_t& hops,
-	uint32_t *parents, 
-	uint32_t *weights,
-	uint32_t *adjacency_list,
-	uint32_t *adjacency_offsets);
-
-void build_path(
-	uint32_t *path, 
-	const uint32_t source,
-	const uint32_t target,
-	size_t& hops,
-	uint32_t *parents, 
-	uint32_t *adjacency_list,
-	uint32_t *adjacency_offsets);
-
 struct Graph {
 
 // ---------------------------------------------------
@@ -35,18 +15,21 @@ struct Graph {
 // ---------------------------------------------------
 	uint32_t n_vertex;
 	uint32_t n_edges;
-	bool weighted = false;
+
+	uint32_t 	*adjacency_offsets=NULL;
+	uint32_t 	*adjacency_list=NULL;
+
+	// bool weighted = false;
+
 	uint32_t node_proccessed=0;
 
 	// INfo about edges and nodes:
 	uint32_t 	max_edges_to_single_node = 0;
 	uint32_t 	min_edges_to_single_node = 0;
 
-	uint32_t 	*adjacency_offsets=NULL;
-	uint32_t 	*adjacency_list=NULL;
 	std::vector<std::vector<uint32_t>> inv_edges; // FOR CPU USE ONLY
 
-	uint32_t 	*weights=NULL;
+	// uint32_t 	*weights=NULL;
 
 	bool		*isTarget=NULL;
 	std::vector<uint32_t> sources; // FOR CPU USE ONLY
@@ -55,6 +38,7 @@ struct Graph {
 	bool		*inc_dec_vector=NULL;
 	std::vector<std::string> node_name_list;
 
+	// SUBGRAPH MASKS
 	uint32_t 	**distances = NULL;
 
 //  

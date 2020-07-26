@@ -1,45 +1,9 @@
 #include <stdio.h>
 
 #include "Graph.hpp"
-#include "my_cuda.h"
-#include "kernels.h"
-//#include "cuda.h"
+// #include "kernels.h"
+// #include "cuda.h"
 
-void build_weighted_path(
-	uint32_t *path,
-	const uint32_t source,
-	const uint32_t target,
-	uint32_t& path_cost,
-	uint32_t& hops,
-	uint32_t *parents,
-	uint32_t *weights,
-	uint32_t *adjacency_list,
-	uint32_t *adjacency_offsets)
-{
-	path_cost=0;
-	hops=0;
-	uint32_t parent;
-	path[hops]=target;
-	do{
-		parent = parents[path[hops]];
-		hops++;
-		path[hops]=parent;
-		//cost parent ----> path[hops-1]
-		//search edge in array:
-		uint32_t i=0;
-		while(adjacency_list[adjacency_offsets[parent]+i]!=path[hops-1]){
-			++i;
-		}
-		path_cost+=weights[adjacency_offsets[parent]+i];
-	}while(parent!=source);
-
-	path[hops+1]=source;
-	uint32_t i=0;
-	while(adjacency_list[adjacency_offsets[source]+i]!=path[hops-1]){
-		++i;
-	}
-	path_cost+=weights[adjacency_offsets[source]+i];
-}
 
 uint32_t* Graph::BFS_cuda_basic(const uint32_t source){
 
@@ -445,7 +409,6 @@ uint32_t* Graph::Dijkstra_cuda(const uint32_t source,const uint32_t target, size
 	return path;
 }
 
-
 uint32_t* Graph::BFS_cuda_basic_2(const uint32_t source, const uint32_t target){
 
 	if(source>=n_vertex) {
@@ -546,7 +509,6 @@ uint32_t* Graph::BFS_cuda_basic_2(const uint32_t source, const uint32_t target){
 
 	return distances;
 }
-
 
 uint32_t* Graph::PATHS_cuda_basic(const uint32_t source, const uint32_t target, size_t &hops){
 

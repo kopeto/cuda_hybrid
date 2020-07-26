@@ -1,0 +1,47 @@
+
+SOURCE: 2550
+TARGET: 12354
+
+Get distances(MASK) in cuda(parallel BFS): (244.11ms)
+
+  [HYBRID] length  1:        0 routes(0us)
+[CPU_ONLY] length  1:        0 routes(1us)
+Speed gain: x2.55
+-------------------------------------------
+  [HYBRID] length  2:        0 routes(0us)
+[CPU_ONLY] length  2:        0 routes(9us)
+Speed gain: x38.58
+-------------------------------------------
+  [HYBRID] length  3:        0 routes(0us)
+[CPU_ONLY] length  3:        0 routes(65us)
+Speed gain: x362.06
+-------------------------------------------
+  [HYBRID] length  4:        0 routes(0us)
+[CPU_ONLY] length  4:        0 routes(544us)
+Speed gain: x2863.23
+-------------------------------------------
+  [HYBRID] length  5:        0 routes(0us)
+[CPU_ONLY] length  5:        0 routes(6.00ms)
+Speed gain: x33321.13
+-------------------------------------------
+  [HYBRID] length  6:        0 routes(1us)
+[CPU_ONLY] length  6:        0 routes(66.04ms)
+Speed gain: x64749.93
+-------------------------------------------
+  [HYBRID] length  7:        0 routes(0us)
+[CPU_ONLY] length  7:        0 routes(764.68ms)
+Speed gain: x813488.02
+-------------------------------------------
+  [HYBRID] length  8:        0 routes(0us)
+[CPU_ONLY] length  8:        0 routes(7.63sec)
+Speed gain: x8115429.62
+-------------------------------------------
+  [HYBRID] length  9:        0 routes(0us)
+[CPU_ONLY] length  9:        0 routes(82.65sec)
+Speed gain: x114793047.49
+-------------------------------------------
+  [HYBRID] length 10:        0 routes(0us)
+[CPU_ONLY] length 10:        0 routes(884.82sec)
+Speed gain: x1040960757.52
+-------------------------------------------
+Deleting graph from memory...
