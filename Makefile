@@ -15,6 +15,12 @@ main: main.cpp Timer.o Graph.o build_routes.o all_routes_algo.o
 bench1: bench1.cpp Timer.o Graph.o build_routes.o all_routes_algo.o
 	$(CUDAXX) -O3 $^ -o $@
 
+bench2: bench2.cpp Timer.o Graph.o build_routes.o all_routes_algo.o
+	$(CUDAXX) -O3 $^ -o $@
+
+bench3: bench3.cpp Timer.o Graph.o build_routes.o all_routes_algo.o
+	$(CUDAXX) -O3 $^ -o $@
+
 run: main
 	./test alzheimer_graph.json
 

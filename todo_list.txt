@@ -1,4 +1,0 @@
-
--Anadir mecanismo para poder escribir los path en disco y
-no tener que mantener todos los paths en memoria. Mucho mas
-lento pero necesario con path de +8/9 de longitud. Facil.

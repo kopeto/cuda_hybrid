@@ -23,6 +23,7 @@ class Timer{
 public:
 	Timer();
 	Timer(uint64_t* result);
+	Timer(uint64_t *result, bool p);
 	~Timer();
 
 	void Stop();
@@ -32,6 +33,7 @@ public:
 private:
 	std::chrono::time_point<std::chrono::high_resolution_clock> m_StartTimePoint;
 	uint64_t *_duration = nullptr;
+	bool print_results = true;
 };
 
 #endif 
